@@ -1,4 +1,5 @@
 
 public class MediaTracker {
-	private MediaTracker mediaTracker;
+private MediaTracker mediaTracker;
+
 }

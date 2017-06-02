@@ -1,17 +1,20 @@
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.Random;
 import java.util.Vector;
 
-public class SpriteManager extends Vector {
-	 private BacGroundImage backgroundImage;
+public class SpriteManager extends Vector{
+// Animation display rate, 12 fps
+	 private BackGround backgroundImage;
 
-	 public SpriteManager(BacGroundImage backgroundImage) {
-	 this.backgroundImage = 
-	                       backgroundImage;
-	  }//end constructor
+	 public SpriteManager(BackGround backgroundImage) {
+	 this.backgroundImage = 
+	                       backgroundImage;
+	  }//end constructor
 	//---------------------------------//
 	
- public Point getEmptyPosition(
- Dimension spriteSize){
+ public Point getEmptyPosition(Dimension spriteSize){
 	 Rectangle trialSpaceOccupied = new Rectangle(0, 0, spriteSize.width, spriteSize.height);
 	 Random rand = new Random( System.currentTimeMillis());
 	 boolean empty = false;
@@ -23,8 +26,8 @@ public class SpriteManager extends Vector {
 	 trialSpaceOccupied.x = Math.abs(rand.nextInt() % backgroundImage.getSize().width);
 	 trialSpaceOccupied.y = Math.abs(rand.nextInt() % backgroundImage.getSize().height);
 
-	// Iterate through existing 
-	// sprites, checking if position 
+	// Iterate through existing 
+	// sprites, checking if position 
 	// is empty
 	 boolean collision = false;
 	 for(int cnt = 0;cnt < size(); cnt++){
@@ -48,32 +51,32 @@ public class SpriteManager extends Vector {
 	//Update a sprite's position
 	 sprite.updatePosition();
 
-	//Test for collision. Positive 
+	//Test for collision. Positive 
 	// result indicates a collision
 	 int hitIndex = testForCollision(sprite);
 	 if (hitIndex >= 0){
 	//a collision has occurred
 	bounceOffSprite(cnt,hitIndex);
-	      }//end if
-	    }//end for loop
-	  }//end update
+	      }//end if
+	    }//end for loop
+	  }//end update
 	//---------------------------------//
 	
 	 private int testForCollision(
 	 Sprite testSprite) {
-	//Check for collision with other 
+	//Check for collision with other 
 	// sprites
-	Sprite  sprite;
+	Sprite  sprite;
 	 for (int cnt = 0;cnt < size(); cnt++){
 	 sprite = (Sprite)elementAt(cnt);
 	 if (sprite == testSprite)
-	        //don't check self
-	        continue;
-	      //Invoke testCollision method 
-	      // of Sprite class to perform
+	        //don't check self
+	        continue;
+	      //Invoke testCollision method 
+	      // of Sprite class to perform
 	// the actual test.
 	 if (testSprite.testCollision( sprite))
-	//Return index of colliding 
+	//Return index of colliding 
 	// sprite
 	 return cnt;
 	 }//end for loop
@@ -84,7 +87,7 @@ public class SpriteManager extends Vector {
  private void bounceOffSprite(
 	 int oneHitIndex,
 	int otherHitIndex){
-	//Swap motion vectors for 
+	//Swap motion vectors for 
 	 // bounce algorithm
 	 Sprite oneSprite = (Sprite)elementAt(oneHitIndex);
 	 Sprite otherSprite = (Sprite)elementAt(otherHitIndex);
@@ -96,9 +99,9 @@ public class SpriteManager extends Vector {
 	//---------------------------------//
 	
  public void drawScene(Graphics g){
-	//Draw the background and erase 
+	//Draw the background and erase 
 // sprites from graphics area
- //Disable the following statement 
+ //Disable the following statement 
  // for an interesting effect.
  backgroundImage.drawBackgroundImage(g);
 
@@ -112,7 +115,6 @@ for (int cnt = 0;cnt < size(); cnt++)
  public void addSprite(Sprite sprite){
 	add(sprite);
 	 }//end addSprite()
-	  
-
-
+	  
 }
+

@@ -20,35 +20,35 @@ public static void main(String[] args){
 	new Animation();
 }
 Animation(){
-	mediaTracker =new MediaTracker(this);
-			 //Get and track the background 
+	mediaTracker = new MediaTracker(this);
+			 //Get and track the background 
 			// image
 			backGroundImage = Toolkit.getDefaultToolkit().
-			 getImage("background02.gif");
+			 getImage("java1450c.gif");
 			 mediaTracker.addImage( backGroundImage, 0);
 			
- //Get and track 6 images to use 
+ //Get and track 6 images to use 
  // for sprites
 
 			gifImages[0] = Toolkit.getDefaultToolkit().
-			 getImage("redball.gif");
+			 getImage("java1450d.gif");
 			 mediaTracker.addImage( gifImages[0], 0);
 			gifImages[1] = Toolkit.getDefaultToolkit().
-			 getImage("greenball.gif");
+			 getImage("java1450e.gif");
 			 mediaTracker.addImage(gifImages[1], 0);
 			 gifImages[2] = Toolkit.getDefaultToolkit().
-			 getImage("blueball.gif");
+			 getImage("java1450f.gif");
 			 mediaTracker.addImage(gifImages[2], 0);
 			 gifImages[3] = Toolkit.getDefaultToolkit().
-			 getImage("yellowball.gif");
+			 getImage("java1450g.gif");
 			 mediaTracker.addImage(gifImages[3], 0);
 			 gifImages[4] = Toolkit.getDefaultToolkit().
-			 getImage("purpleball.gif");
+			 getImage("java1450h.gif");
 			 mediaTracker.addImage( gifImages[4], 0);
 			 gifImages[5] = Toolkit.getDefaultToolkit().
-			 getImage("orangeball.gif");
+			 getImage("java1450i.gif");
 			 mediaTracker.addImage( gifImages[5], 0);
-		//Block and wait for all images to 
+		//Block and wait for all images to 
 		// be loaded
 		try {
 			 mediaTracker.waitForID(0);
@@ -56,20 +56,20 @@ Animation(){
 			 System.out.println(e);
 			 }//end catch
 
-//Base the Frame size on the size 
+//Base the Frame size on the size 
  // of the background image.
  //These getter methods return -1 if
  // the size is not yet known.
- //Insets will be used later to 
- // limit the graphics area to the 
+ //Insets will be used later to 
+ // limit the graphics area to the 
 			
 			// client area of the Frame.
 			 int width = backGroundImage.getWidth(this);
 			int height = backGroundImage.getHeight(this);
 
-			//While not likely, it may be 
+			//While not likely, it may be 
 			// possible that the size isn't
-			// known yet.  Do the following 
+			// known yet.  Do the following 
 			// just in case.
 			//Wait until size is known
 			 while(width == -1 || height == -1){
@@ -89,8 +89,8 @@ Animation(){
 			 animationThread = new Thread(this);
 			 animationThread.start();
 			
-			//Anonymous inner class window 
-			// listener to terminate the 
+			//Anonymous inner class window 
+			// listener to terminate the 
 			// program.
 			 this.addWindowListener( new WindowAdapter(){
 			 public void windowClosing(
@@ -98,12 +98,12 @@ Animation(){
 			 System.exit(0);}});
 }
  public void run() {
-//Create and add sprites to the 
+//Create and add sprites to the 
 // sprite manager
  spriteManager = new SpriteManager(
  new BackgroundImage(
  this, backGroundImage));
-//Create 15 sprites from 6 gif 
+//Create 15 sprites from 6 gif 
 // files.
  for (int cnt = 0; cnt < 15; cnt++){
  Point position = spriteManager.
@@ -115,8 +115,8 @@ Animation(){
  makeSprite(position, cnt % 6));
 }//end for loop
 
-//Loop, sleep, and update sprite 
-// positions once each 83 
+//Loop, sleep, and update sprite 
+// positions once each 83 
 // milliseconds
  long time =
  System.currentTimeMillis();
@@ -125,20 +125,20 @@ spriteManager.update();
 repaint();
 try {
 time += animationDelay;
- Thread.sleep(Math.max(0,time - 
+ Thread.sleep(Math.max(0,time - 
  System.currentTimeMillis()));
  }catch (InterruptedException e) {
  System.out.println(e);
-      }//end catch
-    }//end while loop
-  }//end run method
+      }//end catch
+    }//end while loop
+  }//end run method
  private Sprite makeSprite(
  Point position, int imageIndex) {
  return new Sprite(this, gifImages[imageIndex],position, new Point(rand.nextInt() % 5,
  rand.nextInt() % 5));
  }//end makeSprite()
  public void update(Graphics g) {
-//Create the offscreen graphics 
+//Create the offscreen graphics 
 // context
  if (offScreenGraphicsCtx == null) {
 offScreenImage = createImage(getSize().width, getSize().height);
@@ -151,11 +151,11 @@ offScreenGraphicsCtx = offScreenImage.getGraphics();
 // Draw the scene onto the screen
  if(offScreenImage != null){
  g.drawImage(offScreenImage, 0, 0, this);
-    }//end if
-  }//end overridden update method
+    }//end if
+  }//end overridden update method
  public void paint(Graphics g) {
-//Nothing required here.  All 
-// drawing is done in the update 
+//Nothing required here.  All 
+// drawing is done in the update 
 // method above.
 }//end overridden paint method
 
